@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Manage Blog{% endblock %}
+{% block content %}
+<h2>Manage Blog</h2>
+<form method="POST" action="{{ url_for('manage_blog') }}">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" name="title" required>
+    </div>
+    <div class="form-group">
+        <label for="content">Content</label>
+        <textarea class="form-control" id="content" name="content" rows="5" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Create Post</button>
+</form>
+<h3>All Blog Posts</h3>
+<ul class="list-group">
+    {% for post in blog_posts %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        <span>{{ post.title }}</span>
+        <form method="POST" action="{{ url_for('delete_blog_post', id=post.id) }}">
+            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

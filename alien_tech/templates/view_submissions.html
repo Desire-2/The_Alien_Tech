@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Submissions for {{ project.title }}{% endblock %}
+{% block content %}
+<h2>Submissions for {{ project.title }}</h2>
+<ul class="list-group">
+    {% for submission in submissions %}
+    <li class="list-group-item">
+        <a href="{{ submission.submission_url }}" target="_blank">Submission by {{ submission.user.username }}</a> - Submitted on {{ submission.submission_date.strftime('%Y-%m-%d %H:%M:%S') }}
+        <form method="POST" action="{{ url_for('ai_score_submission', submission_id=submission.id) }}">
+            <button type="submit" class="btn btn-secondary">AI Score</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

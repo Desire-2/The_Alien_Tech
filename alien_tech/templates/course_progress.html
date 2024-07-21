@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Course Progress{% endblock %}
+{% block content %}
+<h2>Your Progress in {{ progress[0].course.title }}</h2>
+<ul>
+    {% for item in progress %}
+        <li>
+            {{ item.module.title if item.module else 'N/A' }} - {{ item.lesson.title if item.lesson else 'N/A' }} - 
+            {% if item.completed %} Completed on {{ item.date_completed.strftime('%Y-%m-%d') }} {% else %} Not Completed {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

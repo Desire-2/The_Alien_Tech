@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Track Progress of {{ project.title }}{% endblock %}
+{% block content %}
+<h2>Track Progress of {{ project.title }}</h2>
+<form method="POST" action="{{ url_for('track_project', project_id=project.id) }}">
+    <div class="form-group">
+        <label for="progress">Progress (%)</label>
+        <input type="number" class="form-control" id="progress" name="progress" value="{{ tracking.progress if tracking else 0 }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Update Progress</button>
+</form>
+{% endblock %}

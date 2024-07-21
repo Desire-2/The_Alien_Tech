@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Manage Support Tickets{% endblock %}
+{% block content %}
+<h2>Manage Support Tickets</h2>
+<ul class="list-group">
+    {% for ticket in tickets %}
+    <li class="list-group-item">
+        <strong>{{ ticket.subject }}</strong> - {{ ticket.content }}
+        <form method="POST" action="{{ url_for('update_ticket_status', id=ticket.id) }}">
+            <select name="status" class="form-control" onchange="this.form.submit()">
+                <option value="Open" {% if ticket.status == 'Open' %}selected{% endif %}>Open</option>
+                <option value="Closed" {% if ticket.status == 'Closed' %}selected{% endif %}>Closed</option>
+            </select>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

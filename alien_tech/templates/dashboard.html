@@ -1,0 +1,195 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - The Alien Tech{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Dashboard</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group mr-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+        </div>
+        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <span data-feather="calendar"></span>
+            This week
+        </button>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Overview Cards -->
+    <div class="col-md-6 col-lg-3 mb-4">
+        <div class="card text-white bg-primary">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <div class="mr-5">Courses Enrolled: 12</div>
+                <a href="{{ url_for('courses') }}" class="stretched-link"></a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3 mb-4">
+        <div class="card text-white bg-success">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i class="fas fa-check"></i>
+                </div>
+                <div class="mr-5">Quizzes Completed: 5</div>
+                <a href="{{ url_for('quizzes') }}" class="stretched-link"></a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3 mb-4">
+        <div class="card text-white bg-warning">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="mr-5">Pending Assignments: 2</div>
+                <a href="{{ url_for('assignments') }}" class="stretched-link"></a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3 mb-4">
+        <div class="card text-white bg-danger">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <div class="mr-5">Notifications: 8</div>
+                <a href="{{ url_for('notifications') }}" class="stretched-link"></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Charts -->
+    <div class="col-md-8 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Course Progress</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="courseProgressChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Weekly Activity</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="weeklyActivityChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Recent Activity -->
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Recent Activity</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled">
+                    <li class="media mb-3">
+                        <img src="{{ url_for('static', filename='images/user.png') }}" class="mr-3 rounded-circle" width="40" alt="User">
+                        <div class="media-body">
+                            <h6 class="mt-0 mb-1">John Doe</h6>
+                            Completed the quiz <a href="{{ url_for('quiz', quiz_id=1) }}">"Introduction to Python"</a>
+                        </div>
+                    </li>
+                    <li class="media mb-3">
+                        <img src="{{ url_for('static', filename='images/user.png') }}" class="mr-3 rounded-circle" width="40" alt="User">
+                        <div class="media-body">
+                            <h6 class="mt-0 mb-1">Jane Smith</h6>
+                            Enrolled in <a href="{{ url_for('course', course_id=2) }}">"Advanced JavaScript"</a>
+                        </div>
+                    </li>
+                    <li class="media mb-3">
+                        <img src="{{ url_for('static', filename='images/user.png') }}" class="mr-3 rounded-circle" width="40" alt="User">
+                        <div class="media-body">
+                            <h6 class="mt-0 mb-1">Sam Wilson</h6>
+                            Started the course <a href="{{ url_for('course', course_id=3) }}">"Machine Learning Basics"</a>
+                        </div>
+                    </li>
+                    <!-- Add more recent activities here -->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Notifications -->
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Notifications</h5>
+            </div>
+            <div class="card-body">
+                <div class="list-group">
+                    <a href="{{ url_for('notifications') }}" class="list-group-item list-group-item-action">New message from your instructor</a>
+                    <a href="{{ url_for('assignments') }}" class="list-group-item list-group-item-action">Assignment due in 3 days</a>
+                    <a href="{{ url_for('course', course_id=4) }}" class="list-group-item list-group-item-action">New course available: "Data Science with Python"</a>
+                    <a href="{{ url_for('user_profile', username=usename) }}" class="list-group-item list-group-item-action">Reminder: Complete your profile</a>
+                    <!-- Add more notifications here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var ctx = document.getElementById('courseProgressChart').getContext('2d');
+    var courseProgressChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Course 1', 'Course 2', 'Course 3', 'Course 4', 'Course 5'],
+            datasets: [{
+                label: 'Progress (%)',
+                data: [80, 70, 60, 90, 50],
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    var ctx2 = document.getElementById('weeklyActivityChart').getContext('2d');
+    var weeklyActivityChart = new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            datasets: [{
+                label: 'Activities',
+                data: [12, 19, 3, 5, 2, 3, 7],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}

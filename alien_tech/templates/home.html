@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active" style="background-image: url('{{ url_for('static', filename='img/hero1.jpg') }}')">
+            <div class="carousel-caption d-none d-md-block">
+                <h1 class="display-5 fw-bold">Welcome to The Alien Tech</h1>
+                <p>Learn coding from scratch with our comprehensive courses, quizzes, and community discussions.</p>
+                <a class="btn btn-primary btn-lg" href="{{ url_for('register') }}">Get Started</a>
+            </div>
+        </div>
+        <div class="carousel-item" style="background-image: url('{{ url_for('static', filename='img/hero2.jpg') }}');">
+            <div class="carousel-caption d-none d-md-block">
+                <h1 class="display-5 fw-bold">Interactive Learning</h1>
+                <p>Engage with interactive quizzes and discussions to enhance your learning experience.</p>
+                <a class="btn btn-primary btn-lg" href="{{ url_for('register') }}">Join Now</a>
+            </div>
+        </div>
+        <div class="carousel-item" style="background-image: url('{{ url_for('static', filename='img/hero3.jpg') }}');">
+            <div class="carousel-caption d-none d-md-block">
+                <h1 class="display-5 fw-bold">Earn Certificates</h1>
+                <p>Receive certificates for completing courses and demonstrate your skills to the world.</p>
+                <a class="btn btn-primary btn-lg" href="{{ url_for('certificates') }}">View Certificates</a>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+    <!-- Introduction Section -->
+    <section class="text-center py-8">
+        <h2 class="text-3xl font-bold mb-4">Why Learn with The Alien Tech?</h2>
+        <p class="text-lg mb-6">Our platform offers a unique approach to learning coding, providing interactive courses, hands-on projects, and real-time feedback to help you become a proficient coder.</p>
+    </section>
+
+    <!-- Features Section -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center py-8">
+        <div class="bg-white p-6 rounded shadow-md">
+            <i class="fas fa-laptop-code text-4xl mb-4 text-blue-600"></i>
+            <h3 class="text-2xl font-bold mb-2">Interactive Courses</h3>
+            <p>Engage in hands-on learning with our interactive coding courses designed for beginners and advanced learners.</p>
+        </div>
+        <div class="bg-white p-6 rounded shadow-md">
+            <i class="fas fa-comments text-4xl mb-4 text-blue-600"></i>
+            <h3 class="text-2xl font-bold mb-2">Real-Time Feedback</h3>
+            <p>Receive instant feedback on your code and projects from our AI-powered evaluation system.</p>
+        </div>
+        <div class="bg-white p-6 rounded shadow-md">
+            <i class="fas fa-users text-4xl mb-4 text-blue-600"></i>
+            <h3 class="text-2xl font-bold mb-2">Community Support</h3>
+            <p>Join our community of learners and get support from peers and mentors to help you succeed.</p>
+        </div>
+    </section>
+
+    <!-- Detailed Course Breakdown Section -->
+    <section class="py-8">
+        <h2 class="text-3xl font-bold text-center mb-4">Course Breakdown</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {% for course in detailed_courses %}
+            <div class="bg-white p-6 rounded shadow-md">
+                <img src="{{ url_for('static', filename='images/' + course.image) }}" alt="{{ course.title }}" class="w-full h-32 object-cover mb-4 rounded">
+                <h3 class="text-2xl font-bold mb-2">{{ course.title }}</h3>
+                <p>{{ course.description }}</p>
+                <ul class="list-disc pl-6 mb-4">
+                    {% for module in course.modules %}
+                    <li>{{ module.title }}</li>
+                    {% endfor %}
+                </ul>
+                <a href="{{ url_for('course_detail', course_id=course.id) }}" class="bg-blue-600 text-white py-2 px-4 rounded inline-block">Learn More</a>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Popular Courses Section -->
+    <section class="text-center py-8">
+        <h2 class="text-3xl font-bold mb-4">Popular Courses</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {% for course in popular_courses %}
+            <div class="bg-white p-6 rounded shadow-md">
+                <img src="{{ url_for('static', filename='images/' + course.image) }}" alt="{{ course.title }}" class="w-full h-32 object-cover mb-4 rounded">
+                <h3 class="text-2xl font-bold mb-2">{{ course.title }}</h3>
+                <p>{{ course.description }}</p>
+                <a href="{{ url_for('course_detail', course_id=course.id) }}" class="bg-blue-600 text-white py-2 px-4 rounded mt-4 inline-block">Learn More</a>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Instructor Bios Section -->
+    <section class="bg-gray-200 py-8">
+        <h2 class="text-3xl font-bold text-center mb-4">Meet Our Instructors</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-center">
+            {% for instructor in instructors %}
+            <div class="bg-white p-6 rounded shadow-md">
+                <img src="{{ url_for('static', filename='images/' + instructor.image) }}" alt="{{ instructor.name }}" class="w-32 h-32 rounded-full mx-auto mb-4">
+                <h3 class="text-2xl font-bold mb-2">{{ instructor.name }}</h3>
+                <p>{{ instructor.bio }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="bg-gray-200 py-8">
+        <h2 class="text-3xl font-bold text-center mb-4">What Our Students Say</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+            {% for testimonial in testimonials %}
+            <div class="bg-white p-6 rounded shadow-md">
+                <i class="fas fa-quote-left text-blue-600 text-2xl mb-2"></i>
+                <p class="italic">"{{ testimonial.content }}"</p>
+                <p class="mt-4 font-bold">{{ testimonial.name }}</p>
+                <p>{{ testimonial.course }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Graphs and Statistics Section -->
+    <section class="py-8">
+        <h2 class="text-3xl font-bold text-center mb-4">Our Impact</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-white p-6 rounded shadow-md">
+                <canvas id="enrollmentChart"></canvas>
+            </div>
+            <div class="bg-white p-6 rounded shadow-md">
+                <canvas id="completionChart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- Frequently Asked Questions Section -->
+    <section class="py-8">
+        <h2 class="text-3xl font-bold text-center mb-4">Frequently Asked Questions</h2>
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-white p-6 rounded shadow-md mb-4">
+                <h3 class="text-2xl font-bold mb-2">How do I enroll in a course?</h3>
+                <p>Simply create an account and browse our course catalog to enroll in the course that interests you.</p>
+            </div>
+            <div class="bg-white p-6 rounded shadow-md mb-4">
+                <h3 class="text-2xl font-bold mb-2">What if I need help?</h3>
+                <p>You can access our community forums, reach out to your peers, or contact our support team for assistance.</p>
+            </div>
+            <!-- Add more FAQs as needed -->
+        </div>
+    </section>
+
+    <section class="text-center py-8">
+        <h2 class="text-3xl font-bold mb-4">Start Your Coding Journey Today!</h2>
+        <p class="text-lg mb-6">Join thousands of learners and take the first step towards a rewarding career in tech.</p>
+        <a href="{{ url_for('register') }}" class="bg-blue-600 text-white py-2 px-4 rounded">Sign Up Now</a>
+    </section>
+</div>
+
+    <!-- Partner Logos Section -->
+    <section class="text-center py-8">
+        <h2 class="text-3xl font-bold mb-4">Our Partners</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {% for partner in partners %}
+            <img src="{{ url_for('static', filename='images/' + partner.logo) }}" alt="{{ partner.name }}" class="h-16 mx-auto">
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

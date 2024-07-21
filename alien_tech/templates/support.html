@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Support{% endblock %}
+{% block content %}
+<h2>Submit a Support Ticket</h2>
+<form method="POST" action="{{ url_for('support') }}">
+    <div class="form-group">
+        <label for="subject">Subject</label>
+        <input type="text" class="form-control" id="subject" name="subject" required>
+    </div>
+    <div class="form-group">
+        <label for="content">Content</label>
+        <textarea class="form-control" id="content" name="content" rows="5" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<h3>Your Support Tickets</h3>
+<ul class="list-group">
+    {% for ticket in tickets %}
+    <li class="list-group-item">{{ ticket.subject }} - {{ ticket.status }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

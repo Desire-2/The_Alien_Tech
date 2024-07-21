@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Request a Mentor for {{ project.title }}{% endblock %}
+{% block content %}
+<h2>Request a Mentor for {{ project.title }}</h2>
+<form method="POST" action="{{ url_for('request_mentor', project_id=project.id) }}">
+    <div class="form-group">
+        <label for="mentor_id">Select Mentor</label>
+        <select class="form-control" id="mentor_id" name="mentor_id" required>
+            {% for mentor in mentors %}
+            <option value="{{ mentor.id }}">{{ mentor.username }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Request Mentor</button>
+</form>
+{% endblock %}

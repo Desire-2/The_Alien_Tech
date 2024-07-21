@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Manage Projects{% endblock %}
+{% block content %}
+<h2>Manage Projects</h2>
+<h3>Create New Project</h3>
+<form method="POST" action="{{ url_for('manage_projects') }}">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" name="title" required>
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" name="description" required></textarea>
+    </div>
+    <div class="form-group">
+        <label for="end_date">End Date (YYYY-MM-DD HH:MM:SS)</label>
+        <input type="text" class="form-control" id="end_date" name="end_date" required>
+    </div>
+    <div class="form-group">
+        <label for="course_id">Course</label>
+        <select class="form-control" id="course_id" name="course_id" required>
+            {% for course in courses %}
+            <option value="{{ course.id }}">{{ course.title }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Create Project</button>
+</form>
+
+<h3>Existing Projects</h3>
+<ul class="list-group">
+    {% for project in projects %}
+    <li class="list-group-item">
+        <a href="{{ url_for('view_submissions', project_id=project.id) }}">{{ project.title }}</a> - Ends on {{ project.end_date.strftime('%Y-%m-%d %H:%M:%S') }}
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

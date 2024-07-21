@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Review AI Score{% endblock %}
+{% block content %}
+<h2>Review AI Score for {{ submission.project.title }}</h2>
+<form method="POST" action="{{ url_for('review_ai_score', submission_id=submission.id) }}">
+    <div class="form-group">
+        <label for="feedback">Feedback</label>
+        <textarea class="form-control" id="feedback" name="feedback" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit Review</button>
+</form>
+{% endblock %}

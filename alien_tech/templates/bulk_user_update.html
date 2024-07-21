@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Bulk User Update{% endblock %}
+{% block content %}
+<h2>Bulk User Update</h2>
+<form method="POST" action="{{ url_for('bulk_user_update') }}">
+    <div class="form-group">
+        <label for="user_ids">Select Users:</label>
+        <select id="user_ids" name="user_ids" multiple class="form-control">
+            {% for user in users %}
+                <option value="{{ user.id }}">{{ user.username }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="action">Action:</label>
+        <select id="action" name="action" class="form-control">
+            <option value="activate">Activate</option>
+            <option value="deactivate">Deactivate</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Update Users</button>
+</form>
+{% endblock %}

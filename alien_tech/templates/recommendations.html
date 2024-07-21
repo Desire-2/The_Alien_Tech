@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Recommended Courses{% endblock %}
+{% block content %}
+<h2>Recommended Courses</h2>
+<ul class="list-group">
+    {% for course in courses %}
+    <li class="list-group-item">
+        <strong>{{ course.title }}</strong> - {{ course.description }}
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

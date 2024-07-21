@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Live Code Editor for {{ project.title }}{% endblock %}
+{% block content %}
+<h2>Live Code Editor for {{ project.title }}</h2>
+<form method="POST" action="{{ url_for('live_code_editor', project_id=project.id) }}">
+    <div class="form-group">
+        <label for="code">Code</label>
+        <textarea id="code" name="code" rows="20" class="form-control">{{ code }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Run and Push Code</button>
+</form>
+{% if logs %}
+<div class="mt-4">
+    <h3>Execution Logs:</h3>
+    <pre>{{ logs }}</pre>
+</div>
+{% endif %}
+{% endblock %}

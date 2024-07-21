@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Project Templates{% endblock %}
+{% block content %}
+<h2>Project Templates</h2>
+<ul class="list-group">
+    {% for template in templates %}
+    <li class="list-group-item">
+        <a href="{{ template.url }}" download>{{ template.title }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

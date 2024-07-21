@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Live Classes{% endblock %}
+{% block content %}
+<h2>Upcoming Live Classes</h2>
+<ul>
+    {% for live_class in live_classes %}
+        <li>
+            <strong>{{ live_class.title }}</strong>: {{ live_class.description }} - Scheduled for {{ live_class.date_scheduled.strftime('%Y-%m-%d %H:%M:%S') }}
+            <br>
+            <a href="{{ live_class.link }}" target="_blank">Join Class</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

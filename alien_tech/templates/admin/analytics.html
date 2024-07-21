@@ -1,0 +1,27 @@
+{% extends "admin_base.html" %}
+{% block title %}Analytics Dashboard{% endblock %}
+{% block content %}
+<h2>Analytics Dashboard</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Project</th>
+            <th>Total Submissions</th>
+            <th>Average Score</th>
+            <th>Highest Score</th>
+            <th>Lowest Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for analytics in analytics_data %}
+        <tr>
+            <td>{{ analytics.project.title }}</td>
+            <td>{{ analytics.total_submissions }}</td>
+            <td>{{ analytics.average_score }}</td>
+            <td>{{ analytics.highest_score }}</td>
+            <td>{{ analytics.lowest_score }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

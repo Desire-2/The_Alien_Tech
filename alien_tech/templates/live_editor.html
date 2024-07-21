@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Live Code Editor for {{ project.title }}{% endblock %}
+{% block content %}
+<h2>Live Code Editor for {{ project.title }}</h2>
+<form method="POST" action="{{ url_for('live_editor', project_id=project.id) }}">
+    <textarea id="code-editor" name="code" rows="20" class="form-control"></textarea>
+    <button type="submit" class="btn btn-primary mt-2">Submit Code</button>
+</form>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/codemirror.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/codemirror.min.css" />
+<script>
+    var editor = CodeMirror.fromTextArea(document.getElementById('code-editor'), {
+        lineNumbers: true,
+        mode: "python",
+        theme: "default"
+    });
+</script>
+{% endblock %}

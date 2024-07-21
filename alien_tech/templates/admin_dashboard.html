@@ -1,0 +1,52 @@
+{% extends "admin_base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block content %}
+<h2>Admin Dashboard</h2>
+<div class="row">
+    <div class="col-md-3">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <h5 class="card-title">Manage Users</h5>
+                <p class="card-text">View and manage all users.</p>
+                <a href="{{ url_for('user.index_view') }}" class="btn btn-light">Manage</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-success text-white">
+            <div class="card-body">
+                <h5 class="card-title">Manage Courses</h5>
+                <p class="card-text">View and manage all courses.</p>
+                <a href="{{ url_for('course.index_view') }}" class="btn btn-light">Manage</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-warning text-white">
+            <div class="card-body">
+                <h5 class="card-title">Manage Live Classes</h5>
+                <p class="card-text">View and manage all live classes.</p>
+                <a href="{{ url_for('liveclass.index_view') }}" class="btn btn-light">Manage</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-danger text-white">
+            <div class="card-body">
+                <h5 class="card-title">View Analytics</h5>
+                <p class="card-text">View site analytics and user statistics.</p>
+                <a href=" {{ url_for('analytics_dashboard') }}" class="btn btn-light">View</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-secondary text-white">
+            <div class="card-body">
+                <h5 class="card-title">Manage Projects</h5>
+                <p class="card-text">View and manage all projects.</p>
+                <a href="{{ url_for('project.index_view') }}" class="btn btn-light">Manage</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

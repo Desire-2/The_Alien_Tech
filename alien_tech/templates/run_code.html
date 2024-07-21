@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Run Code for {{ project.title }}{% endblock %}
+{% block content %}
+<h2>Run Code for {{ project.title }}</h2>
+<form method="POST" action="{{ url_for('run_code', project_id=project.id) }}">
+    <div class="form-group">
+        <label for="code">Code</label>
+        <textarea id="code" name="code" rows="20" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="language">Language</label>
+        <select class="form-control" id="language" name="language">
+            <option value="python">Python</option>
+            <!-- Add other languages as needed -->
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Run Code</button>
+</form>
+{% if logs %}
+<div class="mt-4">
+    <h3>Execution Logs:</h3>
+    <pre>{{ logs }}</pre>
+</div>
+{% endif %}
+{% endblock %}

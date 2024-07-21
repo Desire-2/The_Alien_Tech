@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Courses{% endblock %}
+{% block content %}
+<div class="jumbotron text-center bg-success text-white">
+    <h1 class="display-4">Our Courses</h1>
+    <p class="lead">Explore our range of courses designed to help you master coding from scratch.</p>
+</div>
+
+<div class="container mt-4">
+    <div class="row">
+        <!-- Example course card -->
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <img src="{{ url_for('static', filename='img/python.jpg') }}" class="card-img-top" alt="Python Course">
+                <div class="card-body">
+                    <h5 class="card-title">Python for Beginners</h5>
+                    <p class="card-text">Learn the basics of Python programming with hands-on exercises and projects.</p>
+                    <a href="#" class="btn btn-primary">Enroll Now <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <!-- Add more course cards similarly -->
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,212 @@
+/* Navbar Styling */
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+  
+  .table {
+    --bs-table-color: var(--bs-gray-600);
+    --bs-table-bg: var(--bs-gray-100);
+    --bs-table-border-color: transparent;
+  }  
+.navbar {
+    background-color: #343a40;
+}
+.navbar-brand, .nav-link {
+    color: #f8f9fa !important;
+    transition: color 0.3s;
+}
+.navbar-brand:hover, .nav-link:hover {
+    color: #ffc107 !important;
+}
+
+#profile-image {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+#profile-image:hover {
+    border-color: #c8e6c9;
+    transform: scale(1.1);
+}
+.dropdown-menu {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    border: none;
+    border-radius: 60px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.dropdown-header {
+    padding: 20px;
+    border-radius: 60px;
+    background: #4CAF50;
+    color: #fff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.dropdown-item {
+    color: #fff;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+.dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+.dropdown-item i {
+    margin-right: 10px;
+}
+.dropdown-divider {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#profile-preview-img {
+    width: 140px;
+    height: 140px;
+}
+
+/* Container and Footer Styling */
+.container {
+    margin-top: 20px;
+}
+
+/* Flash Messages Styling */
+.alert {
+    margin-top: 20px;
+}
+
+/* Footer Styling */
+footer {
+    background-color: #343a40;
+    color: #f8f9fa;
+    padding: 40px 0;
+}
+footer .footer-top {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #474f57;
+}
+footer .footer-top .social-icons a {
+    color: #f8f9fa;
+    margin-right: 10px;
+    transition: color 0.3s;
+}
+footer .footer-top .social-icons a:hover {
+    color: #ffc107;
+}
+footer .footer-links, footer .footer-contact {
+    margin-bottom: 20px;
+}
+footer .footer-links ul, footer .footer-contact ul {
+    list-style: none;
+    padding: 0;
+}
+footer .footer-links ul li, footer .footer-contact ul li {
+    margin-bottom: 10px;
+}
+footer .footer-links ul li a, footer .footer-contact ul li a {
+    color: #f8f9fa;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+footer .footer-links ul li a:hover, footer .footer-contact ul li a:hover {
+    color: #ffc107;
+}
+
+/* Hero Section Styling */
+#heroCarousel .carousel-item {
+    height: 80vh;
+    background: no-repeat center center;
+    background-size: cover;
+}
+#heroCarousel .carousel-caption {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 20px;
+}
+#heroCarousel h1 {
+    color: #f8f9fa;
+    text-shadow: 2px 2px 8px #000;
+}
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* Card Styling */
+.card {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.card img {
+    border-radius: 10px 10px 0 0;
+}
+.card-title {
+    color: #333;
+    font-weight: bold;
+}
+.card-text {
+    color: #555;
+}
+.btn-primary {
+    margin-top: 10px;
+}
+
+/* Container Styling */
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Overall Page Styling */
+body {
+    background-color: #f4f4f4;
+    color: #333;
+    font-family: 'Arial', sans-serif;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 10px;
+    }
+    .form-control {
+        width: 100%;
+    }
+}
+
+/* Custom Tailwind CSS styles can be added here */
+.progress-bar-container {
+    background-color: #e2e8f0;
+    border-radius: 9999px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 8px;
+    background-color: #4a90e2;
+    border-radius: 9999px;
+}
+.card-body-icon {
+    position: absolute;
+    z-index: 0;
+    top: -20px;
+    right: -20px;
+    opacity: 0.2;
+    font-size: 5rem;
+    transform: rotate(15deg);
+}

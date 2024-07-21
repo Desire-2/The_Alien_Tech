@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}New Option{% endblock %}
+{% block content %}
+<h2>Create New Option</h2>
+<form method="POST" action="">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        {{ form.content.label(class="form-control-label") }}
+        {{ form.content(class="form-control form-control-lg") }}
+    </div>
+    <div class="form-group">
+        {{ form.correct.label(class="form-check-label") }}
+        {{ form.correct(class="form-check-input") }}
+    </div>
+    <div class="form-group">
+        {{ form.submit(class="btn btn-primary") }}
+    </div>
+</form>
+{% endblock %}

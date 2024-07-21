@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Achievements{% endblock %}
+{% block content %}
+<h2>My Achievements</h2>
+<ul class="list-group">
+    {% for user_achievement in user_achievements %}
+    <li class="list-group-item">
+        <img src="{{ user_achievement.achievement.icon_url }}" alt="{{ user_achievement.achievement.name }}" class="icon">
+        {{ user_achievement.achievement.name }} - {{ user_achievement.achievement.description }}
+    </li>
+    {% endfor %}
+</ul>
+<h2>All Achievements</h2>
+<ul class="list-group">
+    {% for achievement in all_achievements %}
+    <li class="list-group-item">
+        <img src="{{ achievement.icon_url }}" alt="{{ achievement.name }}" class="icon">
+        {{ achievement.name }} - {{ achievement.description }}
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
